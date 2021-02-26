@@ -8,7 +8,10 @@ public class HelloLego {
 		System.out.println("Hello Lego!");
 		System.out.println("Hello Lejos!");
 		System.out.println("Hello World!");
+		System.out.println("Hello World!");
+		System.out.println("Hello World!");
 		Button.waitForAnyPress();
+		
 
 	}
 

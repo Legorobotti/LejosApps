@@ -5,4 +5,6 @@ public class DATA {
 	public static float distance=100;
 	public static int directionA=1;
 	public static int directionB=1;
+	public static String colorID="None";
+	public static float ambient=0.5f;
 }

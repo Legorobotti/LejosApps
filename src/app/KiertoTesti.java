@@ -5,85 +5,46 @@ import lejos.hardware.Sound;
 import lejos.hardware.motor.*;
 import lejos.hardware.port.*;
 import lejos.utility.Delay;
-import library.*;
+import runnables.MeasureDistance;
+import runnables.RunMotor;
+import runnables.SeeColor;
+import util.DATA;
 
 public class KiertoTesti {
 
-	public static void main(String[] args) {		
-		UltraSonicSensor ultra = new UltraSonicSensor(SensorPort.S1);
+	public static void main(String[] args) {
+		RunMotor runMotor=new RunMotor();
+		MeasureDistance measureDistance=new MeasureDistance();
+		SeeColor seeColor=new SeeColor();
 		
-		System.out.println("Go around an obstacle\n");
-	    System.out.println("Press any key to start");
-	       
-	    Button.LEDPattern(4);    // flash green led and 
-	    Sound.beepSequenceUp();  // make sound when ready.
+		Thread motor=new Thread(runMotor);
+		Thread distance=new Thread(measureDistance);
+		Thread color=new Thread(seeColor);
+		
+        System.out.println("Drive Forward\nuntil see black\n");
+        System.out.println("Press any key to start");
 
-	    Button.waitForAnyPress();
-	    
-	    UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);
-	    UnregulatedMotor motorB = new UnregulatedMotor(MotorPort.B);
-	    
-	    motorA.setPower(50);
-	    motorB.setPower(50);
-	    
-	    while (Button.ESCAPE.isUp()) 
-	       {	           
-	           // watch for obstacle.
-	           if (ultra.getRange() < .05)
-	           {
-	        	   vaistoliike(motorA, motorB);
-	           }
-	           
-	           Delay.msDelay(50);
-	    }
-	       
-	       // stop motors with brakes on.
-	    motorA.stop();
-	    motorB.stop();
+        Button.LEDPattern(4);     // flash green led and
+        Sound.beepSequenceUp();   // make sound when ready.
 
-	       // free up resources.
-	    motorA.close();
-	    motorB.close();
-	    ultra.close();
-	       
-	    Sound.beepSequence(); // we are done.
+        Button.waitForAnyPress();
+         
+        motor.start();
+        distance.start();
+        color.start();
+        runMotor.startMotor();
+        
+        //while (DATA.shouldRun) {
+            //if (DATA.colorID == "Black") {
+            	//break;
+            //} //else {
+                System.out.println("Press any key to STOP");
+                Button.waitForAnyPress();
+                runMotor.stopMotor();
+            //}
+        //}
 
-	}
-	
-	public static void vaistoliike(UnregulatedMotor motorA, UnregulatedMotor motorB) {
- 	   motorA.stop();
- 	   motorB.stop();
-
-        // Turn to the right about 90 degrees
-        motorA.forward();
-        motorB.backward();
-        
-        Delay.msDelay(750);
-        
-        motorA.stop();
-        motorB.stop();
-        
-        // Go around the obstacle
-        motorA.setPower(30);
-        motorB.setPower(70);
-        
-        motorA.forward();
-        motorB.forward();
-        
-        Delay.msDelay(2000);
-        
-        motorA.stop();
-        motorB.stop();
-        
-        // Turn to the right about 90 degrees
-        motorA.forward();
-        motorB.backward();
-        
-        Delay.msDelay(750);
-        
-        motorA.stop();
-        motorB.stop();
-        
+        runMotor.stopMotor();
 	}
 
 }

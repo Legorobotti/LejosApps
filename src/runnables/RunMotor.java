@@ -19,13 +19,18 @@ public class RunMotor implements Runnable{
 			}
 			if (DATA.distance<0.1) {
 				vaistoliike(motorA, motorB);
-			}
+			} 
 			else {
 				DATA.directionA=1;
 				DATA.directionB=1;
 				motorA.forward();
 				motorB.forward();
+				System.out.println(DATA.ambient);
+				if (DATA.ambient < 0.1) {
+					stopMotor(); 
+				}
 			}
+			
 			
 		}
 	}

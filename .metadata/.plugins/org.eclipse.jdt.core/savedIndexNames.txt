@@ -1,0 +1,12 @@
+INDEX VERSION 1.131+C:\Users\tomis\OneDrive\Documents\GitHub\LejosApps\.metadata\.plugins\org.eclipse.jdt.core
+612511169.index
+3855420317.index
+3644958975.index
+1532773913.index
+1273198226.index
+75572574.index
+3046797473.index
+1502549586.index
+2508235582.index
+1464124803.index
+1165477914.index

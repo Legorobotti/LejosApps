@@ -17,13 +17,13 @@ public class ColorDemo
         System.out.println("Color Demo");
         Lcd.print(2, "Press to start");
         
-        Button.LEDPattern(4);    // flash green led and
-        Sound.beepSequenceUp();    // make sound when ready.
+        Button.LEDPattern(4);    // v‰l‰ytt‰‰ vihre‰‰
+        Sound.beepSequenceUp();    // pit‰‰ ‰‰nen, kun valmis
 
         Button.waitForAnyPress();
         Button.LEDPattern(0);
         
-        // run until escape button pressed.
+        // ajaa, kunnes takaisin-nappia painettu
         
         while (Button.ESCAPE.isUp())
         {
@@ -73,10 +73,10 @@ public class ColorDemo
             Delay.msDelay(250);
         }
 
-        // free up resources.
+        // vapauttaa resurssit
         color.close();
         
-        Sound.beepSequence();    // we are done.
+        Sound.beepSequence();    // valmis
 
         Button.LEDPattern(4);
         Button.waitForAnyPress();

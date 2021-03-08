@@ -5,6 +5,7 @@ import lejos.hardware.Sound;
 import lejos.hardware.port.SensorPort;
 import util.DATA;
 import sensors.ColorSensor;
+import lejos.robotics.Color;
 
 public class SeeColor implements Runnable{
 	ColorSensor    color = new ColorSensor(SensorPort.S3);
@@ -17,12 +18,12 @@ public class SeeColor implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			//color.setColorIdMode();
-			//color.setFloodLight(false);
-	        //DATA.colorID = ColorSensor.colorName(color.getColorID());
-	        //System.out.println(DATA.colorID);
-			DATA.ambient = color.getAmbient();
-			//System.out.println(DATA.ambient);
+			color.setRedMode();
+			color.setFloodLight(Color.RED);
+			color.setFloodLight(true);
+			DATA.ambientViimeksi = DATA.ambient;
+			DATA.ambient = color.getRed();
+			
 		}
 	}
 

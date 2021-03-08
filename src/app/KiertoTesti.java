@@ -34,13 +34,22 @@ public class KiertoTesti {
         color.start();
         runMotor.startMotor();
         
+        /*while (DATA.shouldRun && Button.ESCAPE.isUp()) {
+        	System.out.println("Press ESCAPE to STOP");
+        	if (DATA.ambient < 0.2) {
+        		System.out.println("Sammutetaan moottori!");
+        		runMotor.stopMotor();
+        		break;
+        	}
+        }*/
+        
         //while (DATA.shouldRun) {
             //if (DATA.colorID == "Black") {
             	//break;
             //} //else {
                 System.out.println("Press any key to STOP");
                 Button.waitForAnyPress();
-                runMotor.stopMotor();
+                //runMotor.stopMotor();
             //}
         //}
 

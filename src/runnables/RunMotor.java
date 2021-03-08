@@ -22,11 +22,11 @@ public class RunMotor implements Runnable{
 				vaistoliike(motorA, motorB);
 			}
 			else {
-				if (DATA.ambient > DATA.ambientViimeksi) {
+				if (DATA.ambient - DATA.ambientViimeksi < -0.05) {
 					System.out.println("K‰‰nnyn vasemmalle!");
 					vasemmalle(motorA, motorB);
 				} 
-				else if (DATA.ambient < DATA.ambientViimeksi) {
+				else if (DATA.ambient - DATA.ambientViimeksi > 0.05) {
 					System.out.println("K‰‰nnyn oikealle!");
 					oikealle(motorA, motorB);
 				} else {
@@ -80,7 +80,7 @@ public class RunMotor implements Runnable{
         
         // Look for dark
         while (DATA.vaistoliike) {
-	        if (DATA.ambient == 0.1) {
+	        if (DATA.ambient == 0.5) {
 		        motorA.stop();
 		        motorB.stop();
 		        
